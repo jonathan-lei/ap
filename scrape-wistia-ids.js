@@ -1,3 +1,8 @@
+
+/*
+This function will loop through a page's units and retrieve the Wistia code
+*/
+
 async function retrieveCodes(){
 
     var table = document.querySelector("#studentIndex > div.widget-wrapper > div > div > div > div.UnitContent > section.UnitContent--topics > table > tbody").children;
@@ -14,9 +19,12 @@ async function retrieveCodes(){
             await document.querySelector("#studentIndex > div:nth-child(4) > div > div > div.ScreenModal__topbar.ScreenModal__topbar--gray > div.ScreenModal__topbar__right > a").click();
         }
     }
-    codes = codes.substring(1);
     return codes;
 }
+
+/*
+This function will click on each unit on the page and then calls the retrieveCodes function for each individual unit 
+*/
 
 async function getUnits(){
 
@@ -29,9 +37,12 @@ async function getUnits(){
         await new Promise(r => setTimeout(r, 1000));
         result = result + await retrieveCodes();
     }
+    
+    result = result.substring(1)
 
     console.log(result);
 
 }
 
+// This calls the first function to start looping through the units
 getUnits();
